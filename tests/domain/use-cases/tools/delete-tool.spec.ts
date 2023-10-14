@@ -33,4 +33,10 @@ describe('deleteToolUseCase', () => {
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
   })
+
+  it('should return true if HttpClient return 204', async () => {
+    const result = await sut({ id })
+
+    expect(result).toBeTruthy()
+  })
 })
