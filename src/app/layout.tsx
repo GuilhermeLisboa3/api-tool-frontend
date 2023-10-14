@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { Roboto } from 'next/font/google'
 import { GlobalStyle } from '@/applications/styles'
 import { StyledComponentsRegistry } from '@/main/config'

@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased !important;
     text-rendering: optimizeLegibility !important;
+    background-color: ${colors.primary}
   }
 
   ::-webkit-scrollbar {
