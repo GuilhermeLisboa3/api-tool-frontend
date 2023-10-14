@@ -3,6 +3,7 @@ import { Container, Tools } from './styles'
 import { MdOutlineAdd } from 'react-icons/md'
 import { Button } from '@/applications/components'
 import { CardTool } from './components'
+import { EditStatus } from './edit-status'
 
 export const Tool: React.FC = (): JSX.Element => {
   return (
@@ -14,6 +15,7 @@ export const Tool: React.FC = (): JSX.Element => {
           <CardTool/>
         </Tools>
       </Container>
+      <EditStatus/>
     </>
   )
 }
