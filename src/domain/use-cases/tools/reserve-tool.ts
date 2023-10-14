@@ -8,13 +8,13 @@ type Input = {
   dateOfDevolution: string
   mechanicName: string
 }
-type Output = void
+type Output = boolean
 export type ReserveTool = (input: Input) => Promise<Output>
 
 export const reserveToolUseCase: Setup = (url, httpClient) => async ({ id, dateOfCollection, dateOfDevolution, mechanicName }) => {
   const { statusCode } = await httpClient.request({ url: `${url}/${id}`, method: 'put', body: { dateOfCollection, dateOfDevolution, mechanicName } })
   switch (statusCode) {
-    case 204: return undefined
+    case 204: return true
     default: throw new UnexpectedError()
   }
 }
