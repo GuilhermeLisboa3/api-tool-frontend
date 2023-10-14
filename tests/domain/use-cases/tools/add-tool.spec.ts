@@ -12,7 +12,7 @@ describe('addToolUseCase', () => {
   const httpClient = mock<HttpClient>()
 
   beforeAll(() => {
-    httpClient.request.mockResolvedValue({ statusCode: 200, data: null })
+    httpClient.request.mockResolvedValue({ statusCode: 201, data: null })
   })
 
   beforeEach(() => {
@@ -32,5 +32,11 @@ describe('addToolUseCase', () => {
     const promise = sut({ name, description })
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('should return true if HttpClient return 201', async () => {
+    const result = await sut({ name, description })
+
+    expect(result).toBeTruthy()
   })
 })
