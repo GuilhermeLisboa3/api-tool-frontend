@@ -33,4 +33,10 @@ describe('loadToolByIdUseCase', () => {
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
   })
+
+  it('should return tool if HttpClient return 200', async () => {
+    const result = await sut({ id })
+
+    expect(result).toEqual({ dateOfCollection, description, dateOfDevolution, id, mechanicName, name, status })
+  })
 })
