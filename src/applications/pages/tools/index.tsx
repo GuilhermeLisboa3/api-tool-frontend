@@ -1,8 +1,9 @@
 import React from 'react'
-import { Container, CardTool, Button, Tools } from './styles'
+import { Container, CardTool, Tools } from './styles'
 import { TiEdit } from 'react-icons/ti'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { MdOutlineAdd } from 'react-icons/md'
+import { Button } from '@/applications/components'
 
 export const Tool: React.FC = (): JSX.Element => {
   return (
@@ -10,7 +11,7 @@ export const Tool: React.FC = (): JSX.Element => {
       <Container>
         <h1>Loja de Ferramentas</h1>
         <Tools>
-          <Button className='addButton'><MdOutlineAdd/> Adicionar</Button>
+          <Button className='addButton'><><MdOutlineAdd/> Adicionar</></Button>
           <CardTool>
               <div>
                 <p>Maquita - <span className='available'>Disponivel</span></p>

@@ -34,24 +34,6 @@ export const Tools = styled.main`
   }
 `
 
-export const Button = styled.button`
-  display: block;
-  background-color: ${colors.red};
-  color: ${colors.white};
-  border-radius: 0.5rem;
-  padding: 0 1rem;
-  width: 95px;
-  align-self: center;
-  font-weight: 500;
-  font-size: 1rem;
-  height: 3rem;
-  margin-right: 10px;
-
-  &:hover {
-    opacity: 0.9;
-  }
-`
-
 export const CardTool = styled.section`
   margin: 10px 0px;
   box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
