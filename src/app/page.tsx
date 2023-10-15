@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
-import { Tool } from '../applications/pages'
+import { MakeTool } from '@/main/factories/applications/pages/tools'
 
 const Page = (): JSX.Element => {
   return (
     <>
-      <Tool/>
+      <MakeTool/>
     </>
   )
 }
