@@ -6,12 +6,6 @@ export const Form = styled.form`
   width: 400px;
   margin: auto auto;
 
-  label {
-    margin-top: 30px;
-    margin-bottom: 0px;
-    cursor: pointer;
-  }
-
   select {
     margin-bottom: 0;
     &:focus {

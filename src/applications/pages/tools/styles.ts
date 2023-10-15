@@ -6,8 +6,21 @@ import { Container as Cont } from 'reactstrap'
 export const Container = styled(Cont)`
   min-height: 100vh;
   h1 {
-    margin: 20px 0;
+    padding: 20px 0;
     text-align: center;
+  }
+
+  .not-tools {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 90px 0 0;
+  }
+
+  @media (max-width: 360px) {
+    .not-tools {
+      font-size: 1.5rem;
+    }
   }
 `
 

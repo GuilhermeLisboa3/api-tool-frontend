@@ -7,35 +7,20 @@ export const Form = styled.form`
   margin: 20px auto 0 ;
 
   label {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 0;
-    cursor: pointer;
-    margin-top: 20px ;
-  }
+      margin-bottom: 0px
+    }
 
   section {
     display: flex;
     align-items: center;
     gap: 30px;
-
-    input[type="time"] {
-      width: 170px;
-    }
+    margin-bottom: 15px;
   }
 
   div {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px
-  }
-
-  input {
-    &:focus {
-      border-color: inherit;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
   }
 
   button {

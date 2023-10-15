@@ -36,6 +36,11 @@ export const GlobalStyle = createGlobalStyle`
     background: ${colors.red};
   }
 
+  input[type="password"], input[type="email"], input[type="text"], input[type="date"], input[type="time"] {
+    border: none;
+    outline: none;
+  }
+
 
   button {
     cursor: pointer;
@@ -83,6 +88,10 @@ export const GlobalStyle = createGlobalStyle`
   font-size: 1.4rem;
 }
 
+.form-error {
+  color: ${colors.red};
+  font-size: 0.8rem;
+}
 
 @media (max-width: 510px) {
   .react-modal {
