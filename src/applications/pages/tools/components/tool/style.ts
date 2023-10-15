@@ -17,6 +17,14 @@ export const Container = styled.section`
     color: ${colors.green}
   }
 
+  .reserved {
+    color: ${colors.yellow}
+  }
+
+  .inUse {
+    color: ${colors.red}
+  }
+
   div {
     margin: 0;
     box-shadow: none;

@@ -3,7 +3,7 @@ export type Tool = {
   name: string
   description: string
   status: string
-  dateOfCollection: Date | null
-  dateOfDevolution: Date | null
+  dateOfCollection: string | null
+  dateOfDevolution: string | null
   mechanicName: string | null
 }
