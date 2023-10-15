@@ -5,6 +5,7 @@ import { Button } from '@/applications/components'
 import { CardTool } from './components'
 import { EditStatus } from './edit-status'
 import { AddTool } from './add-tool'
+import { ReserverTool } from './reserver-tool'
 
 export const Tool: React.FC = (): JSX.Element => {
   return (
@@ -18,6 +19,7 @@ export const Tool: React.FC = (): JSX.Element => {
       </Container>
       <EditStatus/>
       <AddTool/>
+      <ReserverTool/>
     </>
   )
 }
