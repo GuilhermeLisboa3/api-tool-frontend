@@ -57,44 +57,19 @@ export const Container = styled.section`
     }
   }
 
-  @media (max-width: 502px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 10px;
-    div {
-      padding: 0;
-    }
+  @media (max-width: 692px) {
     div:nth-child(1) {
-      width: 100%;
-      align-items: flex-start;
-    }
-  }
-
-  @media (max-width: 422px) {
-    div:nth-child(1) {
-      p {
-        font-size: 0.9rem;
-        font-weight: 500;
-      }
-
       p:nth-child(1) {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
       }
-    }
-    div:nth-child(2) {
-      svg {
-        font-size: 1.6rem;
+      p:nth-child(2), p:nth-child(3) {
+        font-size: 1rem;
       }
     }
   }
 
-  @media (max-width: 353px) {
-    text-align: center;
-    align-items: center;
-    gap: 10px;
-    div:nth-child(1) {
-      align-items: center;
-    }
+  @media (max-width: 523px) {
+    flex-direction: column;
+    height: auto;
   }
 `

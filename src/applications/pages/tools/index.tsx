@@ -4,6 +4,7 @@ import { MdOutlineAdd } from 'react-icons/md'
 import { Button } from '@/applications/components'
 import { CardTool } from './components'
 import { EditStatus } from './edit-status'
+import { AddTool } from './add-tool'
 
 export const Tool: React.FC = (): JSX.Element => {
   return (
@@ -16,6 +17,7 @@ export const Tool: React.FC = (): JSX.Element => {
         </Tools>
       </Container>
       <EditStatus/>
+      <AddTool/>
     </>
   )
 }

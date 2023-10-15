@@ -10,12 +10,11 @@ import { Input } from 'reactstrap'
 
 export const EditStatus: React.FC = (): JSX.Element => {
   return (
-    <Modal ariaHideApp={false} isOpen={true} shouldCloseOnEsc={false} className='react-modal' overlayClassName='react-modal-overlay'>
+    <Modal ariaHideApp={false} isOpen={false} shouldCloseOnEsc={false} className='react-modal' overlayClassName='react-modal-overlay'>
       <button className='button-icon-close'><AiOutlineClose/></button>
       <h2>Atualizar status</h2>
       <Form data-testid='edit-form'>
           <Input
-            className="mb-3"
             type="select"
           >
             <option value={'available'}>
