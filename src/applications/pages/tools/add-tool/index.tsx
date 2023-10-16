@@ -14,14 +14,14 @@ export const AddToolForm: React.FC = (): JSX.Element => {
   const addToolForm = useForm<addToolFormData>({ resolver: zodResolver(addToolFormSchema) })
   const { handleSubmit, formState: { errors } } = addToolForm
   const [loading, setLoading] = useState(false)
-  const { setShowAddTool, showAddTool, addTool, setReload } = useContext(ToolContext)
+  const { setShowAddTool, showAddTool, addTool, setReload, reload } = useContext(ToolContext)
 
   const handleAddTool = async ({ name, description }: addToolFormData): Promise<void> => {
     if (loading) return
     setLoading(true)
     try {
       await addTool({ name, description })
-      setReload(true)
+      setReload(!reload)
       setLoading(false)
       setShowAddTool(false)
     } catch (error) {

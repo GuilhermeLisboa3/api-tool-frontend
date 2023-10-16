@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Container } from './style'
 import { TiEdit } from 'react-icons/ti'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { Button } from '@/applications/components'
 import { type Tool } from '@/domain/models'
 import { formatDate } from '@/applications/utils'
+import { ToolContext } from '../../contexts'
 
 type Props = { tool: Tool }
 
 export const CardTool: React.FC<Props> = ({ tool }: Props): JSX.Element => {
+  const { setShowUpdateStatus } = useContext(ToolContext)
   const statusNameInPortuguese = (name: string): string | undefined => {
     if (name === 'available') return 'Disponível'
     if (name === 'reserved') return 'Reservado'
@@ -24,7 +26,7 @@ export const CardTool: React.FC<Props> = ({ tool }: Props): JSX.Element => {
         </div>
         <div>
           { tool.status !== 'available' ? '' : <Button>Reservar</Button> }
-            <TiEdit/>
+            <TiEdit onClick={() => setShowUpdateStatus({ id: tool.id, show: true })}/>
             <RiDeleteBinLine/>
         </div>
       </Container>

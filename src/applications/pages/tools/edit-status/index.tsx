@@ -1,33 +1,51 @@
 'use client'
-import { Button } from '@/applications/components'
+import { Button, Spinner } from '@/applications/components'
 import { Form } from './style'
 
 import { AiOutlineClose } from 'react-icons/ai'
 import Modal from 'react-modal'
-import React from 'react'
-import { Input, Label } from 'reactstrap'
+import React, { useContext, useState } from 'react'
+import { Label } from 'reactstrap'
+import { ToolContext } from '../contexts'
+import { useForm } from 'react-hook-form'
 
 export const EditStatus: React.FC = (): JSX.Element => {
+  const { register, handleSubmit } = useForm()
+  const [loading, setLoading] = useState(false)
+  const { setShowUpdateStatus, showUpdateStatus, updateStatusTool, setReload, reload } = useContext(ToolContext)
+
+  const handleUpdateStatusTool = async ({ status }: any): Promise<void> => {
+    if (loading) return
+    setLoading(true)
+    try {
+      await updateStatusTool({ id: showUpdateStatus.id, status })
+      setReload(!reload)
+      setLoading(false)
+      setShowUpdateStatus({ id: 0, show: false })
+    } catch (error) {
+      setLoading(false)
+    }
+  }
   return (
-    <Modal ariaHideApp={false} isOpen={false} shouldCloseOnEsc={false} className='react-modal' overlayClassName='react-modal-overlay'>
-      <button className='button-icon-close'><AiOutlineClose/></button>
-      <Form data-testid='edit-form'>
+    <Modal ariaHideApp={false} isOpen={showUpdateStatus.show} shouldCloseOnEsc={false} className='react-modal' overlayClassName='react-modal-overlay'>
+      <button className='button-icon-close' onClick={() => setShowUpdateStatus({ id: 0, show: false })}><AiOutlineClose/></button>
+      <Form onSubmit={handleSubmit(handleUpdateStatusTool)}>
           <Label htmlFor='status'>Atualizar status</Label>
-          <Input
-            type="select"
+          <select
             id='status'
+            {...register('status')}
           >
-            <option value={'available'}>
+            <option value='available'>
               Disponível
             </option>
-            <option value={'reserved'}>
+            <option value='reserved'>
               Reservado
             </option>
-            <option value={'inUse'}>
+            <option value='inUse'>
               Em Uso
             </option>
-          </Input>
-          <Button>Salvar</Button>
+          </select>
+          <Button type='submit'>{ loading ? <Spinner/> : 'Salvar'}</Button>
       </Form>
     </Modal>
   )

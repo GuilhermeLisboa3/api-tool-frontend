@@ -4,10 +4,16 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
-  margin: auto auto;
+  margin: 10px auto;
+
+  label {
+    margin-bottom: 0;
+  }
 
   select {
     margin-bottom: 0;
+    padding: 10px;
+    border-radius: 10px;
     &:focus {
       border-color: inherit;
       -webkit-box-shadow: none;
