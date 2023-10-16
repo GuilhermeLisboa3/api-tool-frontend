@@ -6,7 +6,7 @@ import { CardTool } from './components'
 import { EditStatus } from './edit-status'
 import { AddToolForm } from './add-tool'
 import { ReserverTool } from './reserver-tool'
-import { type UpdateStatusTool, type AddTool, type ListTools, type DeleteTool } from '@/domain/use-cases/tools'
+import { type UpdateStatusTool, type AddTool, type ListTools, type DeleteTool, type ReserveTool } from '@/domain/use-cases/tools'
 import { type Tool as ToolModel } from '@/domain/models'
 
 import { MdOutlineAdd } from 'react-icons/md'
@@ -17,12 +17,14 @@ type Props = {
   addTool: AddTool
   updateStatusTool: UpdateStatusTool
   deleteTool: DeleteTool
+  reserveTool: ReserveTool
 }
 
-export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, deleteTool }: Props): JSX.Element => {
+export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, deleteTool, reserveTool }: Props): JSX.Element => {
   const [tools, setTools] = useState<ToolModel[]>([])
   const [showAddTool, setShowAddTool] = useState<boolean>(false)
   const [showUpdateStatus, setShowUpdateStatus] = useState({ id: 0, show: false })
+  const [showReserverTool, setShowReserverTool] = useState({ id: 0, show: false })
   const [reload, setReload] = useState(false)
 
   useEffect(() => {
@@ -50,7 +52,10 @@ export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, de
       showUpdateStatus,
       setShowUpdateStatus,
       updateStatusTool,
-      handleDeleteTool
+      handleDeleteTool,
+      showReserverTool,
+      setShowReserverTool,
+      reserveTool
     }}>
       <Container>
         <h1>Loja de Ferramentas</h1>
