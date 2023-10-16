@@ -6,11 +6,12 @@ import { CardTool } from './components'
 import { EditStatus } from './edit-status'
 import { AddToolForm } from './add-tool'
 import { ReserverTool } from './reserver-tool'
-import { type UpdateStatusTool, type AddTool, type ListTools, type DeleteTool, type ReserveTool } from '@/domain/use-cases/tools'
+import { type UpdateStatusTool, type AddTool, type ListTools, type DeleteTool, type ReserveTool, type LoadToolById } from '@/domain/use-cases/tools'
 import { type Tool as ToolModel } from '@/domain/models'
 
 import { MdOutlineAdd } from 'react-icons/md'
 import { ToolContext } from './contexts'
+import { LoadTool } from './load-tool'
 
 type Props = {
   listTools: ListTools
@@ -18,11 +19,14 @@ type Props = {
   updateStatusTool: UpdateStatusTool
   deleteTool: DeleteTool
   reserveTool: ReserveTool
+  loadTool: LoadToolById
 }
 
-export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, deleteTool, reserveTool }: Props): JSX.Element => {
+export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, deleteTool, reserveTool, loadTool }: Props): JSX.Element => {
   const [tools, setTools] = useState<ToolModel[]>([])
+  const [tool, setTool] = useState<ToolModel>()
   const [showAddTool, setShowAddTool] = useState<boolean>(false)
+  const [showLoadTool, setShowLoadTool] = useState<boolean>(false)
   const [showUpdateStatus, setShowUpdateStatus] = useState({ id: 0, show: false })
   const [showReserverTool, setShowReserverTool] = useState({ id: 0, show: false })
   const [reload, setReload] = useState(false)
@@ -37,6 +41,13 @@ export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, de
     try {
       await deleteTool({ id })
       setTools(tools?.filter(tool => tool.id !== id))
+    } catch (error) {}
+  }
+
+  const handleLoadTool = async (id: number): Promise<void> => {
+    try {
+      const result = await loadTool({ id })
+      setTool(result)
     } catch (error) {}
   }
 
@@ -55,7 +66,10 @@ export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, de
       handleDeleteTool,
       showReserverTool,
       setShowReserverTool,
-      reserveTool
+      reserveTool,
+      handleLoadTool,
+      showLoadTool,
+      setShowLoadTool
     }}>
       <Container>
         <h1>Loja de Ferramentas</h1>
@@ -72,6 +86,7 @@ export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, de
       <EditStatus/>
       <AddToolForm/>
       <ReserverTool/>
+      {tool ? <LoadTool tool={tool}/> : ''}
     </ToolContext.Provider>
   </>
   )

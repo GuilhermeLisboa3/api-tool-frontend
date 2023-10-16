@@ -10,7 +10,7 @@ import { ToolContext } from '../../contexts'
 type Props = { tool: Tool }
 
 export const CardTool: React.FC<Props> = ({ tool }: Props): JSX.Element => {
-  const { setShowUpdateStatus, handleDeleteTool, setShowReserverTool } = useContext(ToolContext)
+  const { setShowUpdateStatus, handleDeleteTool, setShowReserverTool, setShowLoadTool, handleLoadTool } = useContext(ToolContext)
   const statusNameInPortuguese = (name: string): string | undefined => {
     if (name === 'available') return 'Disponível'
     if (name === 'reserved') return 'Reservado'
@@ -20,7 +20,10 @@ export const CardTool: React.FC<Props> = ({ tool }: Props): JSX.Element => {
   return (
     <>
       <Container>
-        <div>
+        <div onClick={async () => {
+          await handleLoadTool(tool.id)
+          setShowLoadTool(true)
+        }}>
           <p>{tool.name} - <span className={tool.status}>{ statusNameInPortuguese(tool.status)}</span></p>
           <p><span>Data da coleta:</span> { tool.dateOfCollection !== null ? formatDate(tool.dateOfCollection) : 'disponível'}</p>
           <p><span>Data da devolução:</span> { tool.dateOfDevolution !== null ? formatDate(tool.dateOfDevolution) : 'disponível'}</p>

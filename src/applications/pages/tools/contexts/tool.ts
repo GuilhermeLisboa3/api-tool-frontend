@@ -15,6 +15,9 @@ type Props = {
   setShowReserverTool: React.Dispatch<React.SetStateAction<{ id: number, show: boolean }>>
   updateStatusTool: UpdateStatusTool
   handleDeleteTool: (id: number) => Promise<void>
+  handleLoadTool: (id: number) => Promise<void>
+  showLoadTool: boolean
+  setShowLoadTool: React.Dispatch<React.SetStateAction<boolean>>
   reserveTool: ReserveTool
 }
 

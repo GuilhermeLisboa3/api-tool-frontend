@@ -1,6 +1,6 @@
 'use client'
 import { Tool } from '@/applications/pages'
-import { makeAddTool, makeDeleteTool, makeListTools, makeReserveTool, makeUpdateStatusTool } from '@/main/factories/domain/use-cases/tool'
+import { makeAddTool, makeDeleteTool, makeListTools, makeLoadToolById, makeReserveTool, makeUpdateStatusTool } from '@/main/factories/domain/use-cases/tool'
 
 export const MakeTool: React.FC = () => (
   <Tool
@@ -9,5 +9,6 @@ export const MakeTool: React.FC = () => (
     updateStatusTool={makeUpdateStatusTool()}
     deleteTool={makeDeleteTool()}
     reserveTool={makeReserveTool()}
+    loadTool={makeLoadToolById()}
   />
 )
