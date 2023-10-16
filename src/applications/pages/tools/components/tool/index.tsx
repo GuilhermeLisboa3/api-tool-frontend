@@ -10,12 +10,13 @@ import { ToolContext } from '../../contexts'
 type Props = { tool: Tool }
 
 export const CardTool: React.FC<Props> = ({ tool }: Props): JSX.Element => {
-  const { setShowUpdateStatus } = useContext(ToolContext)
+  const { setShowUpdateStatus, handleDeleteTool } = useContext(ToolContext)
   const statusNameInPortuguese = (name: string): string | undefined => {
     if (name === 'available') return 'Disponível'
     if (name === 'reserved') return 'Reservado'
     if (name === 'inUse') return 'Em uso'
   }
+
   return (
     <>
       <Container>
@@ -27,7 +28,7 @@ export const CardTool: React.FC<Props> = ({ tool }: Props): JSX.Element => {
         <div>
           { tool.status !== 'available' ? '' : <Button>Reservar</Button> }
             <TiEdit onClick={() => setShowUpdateStatus({ id: tool.id, show: true })}/>
-            <RiDeleteBinLine/>
+            <RiDeleteBinLine onClick={async () => { await handleDeleteTool(tool.id) }}/>
         </div>
       </Container>
     </>

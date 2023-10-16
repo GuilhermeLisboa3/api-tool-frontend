@@ -12,6 +12,7 @@ type Props = {
   showUpdateStatus: { id: number, show: boolean }
   setShowUpdateStatus: React.Dispatch<React.SetStateAction<{ id: number, show: boolean }>>
   updateStatusTool: UpdateStatusTool
+  handleDeleteTool: (id: number) => Promise<void>
 }
 
 export const ToolContext = createContext<Props>(null as any)

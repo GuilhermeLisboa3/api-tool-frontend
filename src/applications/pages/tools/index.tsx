@@ -6,15 +6,20 @@ import { CardTool } from './components'
 import { EditStatus } from './edit-status'
 import { AddToolForm } from './add-tool'
 import { ReserverTool } from './reserver-tool'
-import { type UpdateStatusTool, type AddTool, type ListTools } from '@/domain/use-cases/tools'
+import { type UpdateStatusTool, type AddTool, type ListTools, type DeleteTool } from '@/domain/use-cases/tools'
 import { type Tool as ToolModel } from '@/domain/models'
 
 import { MdOutlineAdd } from 'react-icons/md'
 import { ToolContext } from './contexts'
 
-type Props = { listTools: ListTools, addTool: AddTool, updateStatusTool: UpdateStatusTool }
+type Props = {
+  listTools: ListTools
+  addTool: AddTool
+  updateStatusTool: UpdateStatusTool
+  deleteTool: DeleteTool
+}
 
-export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool }: Props): JSX.Element => {
+export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool, deleteTool }: Props): JSX.Element => {
   const [tools, setTools] = useState<ToolModel[]>([])
   const [showAddTool, setShowAddTool] = useState<boolean>(false)
   const [showUpdateStatus, setShowUpdateStatus] = useState({ id: 0, show: false })
@@ -23,6 +28,15 @@ export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool }: 
   useEffect(() => {
     listTools().then(tools => setTools(tools)).catch(error => console.log(error))
   }, [reload])
+
+  const handleDeleteTool = async (id: number): Promise<void> => {
+    const result = confirm('Deseja mesmo apagar essa ferramenta ?')
+    if (!result) return undefined
+    try {
+      await deleteTool({ id })
+      setTools(tools?.filter(tool => tool.id !== id))
+    } catch (error) {}
+  }
 
   return (
   <>
@@ -35,7 +49,8 @@ export const Tool: React.FC<Props> = ({ listTools, addTool, updateStatusTool }: 
       setReload,
       showUpdateStatus,
       setShowUpdateStatus,
-      updateStatusTool
+      updateStatusTool,
+      handleDeleteTool
     }}>
       <Container>
         <h1>Loja de Ferramentas</h1>
