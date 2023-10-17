@@ -18,6 +18,7 @@ export const reserveToolFormSchema = z.object({
     const hours = date.getHours()
     const minutes = date.getMinutes()
     if (timeHours < hours) return false
+    if (timeHours > hours) return true
     if (timeMinutes < minutes) return false
     return true
   }, 'Insira uma hora ou minuto maior que agora.'),
